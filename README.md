@@ -56,9 +56,9 @@ nano ~/.zshrc
 
 Add the following line at the end (replace with your absolute path):
 - Using Podman:
-  alias helper="podman run --rm -it --env-file /absolute/path/to/your/CommandsCLI/.env commands-cli"
+  alias helpme="podman run --rm -it --env-file /absolute/path/to/your/CommandsCLI/.env commands-cli"
 - Using Docker:
-  alias helper="docker run --rm -it --env-file /absolute/path/to/your/CommandsCLI/.env commands-cli"
+  alias helpme="docker run --rm -it --env-file /absolute/path/to/your/CommandsCLI/.env commands-cli"
 
 #### 2. For Bash (Default on older Linux distros and Git Bash on Windows)
 Open your ~/.bashrc file:
@@ -85,13 +85,13 @@ Add the following function to map helper dynamically (replace with your absolute
   function Get-TerminalHelper {
       podman run --rm -it --env-file "C:\path\to\your\CommandsCLI\.env" commands-cli
   }
-  Set-Alias -Name helper -Value Get-TerminalHelper
+  Set-Alias -Name helpme -Value Get-TerminalHelper
 
 - Using Docker:
   function Get-TerminalHelper {
       docker run --rm -it --env-file "C:\path\to\your\CommandsCLI\.env" commands-cli
   }
-  Set-Alias -Name helper -Value Get-TerminalHelper
+  Set-Alias -Name helpme -Value Get-TerminalHelper
 
 Save and close the file, then reload your profile:
 & $PROFILE
@@ -110,7 +110,7 @@ podman run --rm -it --env-file "C:\path\to\your\CommandsCLI\.env" commands-cli
 
 Now, open a brand new terminal, navigate to any directory, and simply run:
 
-helper
+helpme
 
 ### Example session:
 q: how to unzip a file to a specific folder
