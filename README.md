@@ -43,7 +43,7 @@ docker build -t commands-cli .
 
 ## Creating a Global Alias (Shell Integration)
 
-To make commands-cli run instantly from any directory using a simple keyword like helpme or helper, set up a global alias for your operating system and terminal shell.
+To make commands-cli run instantly from any directory using a simple keyword like helpme, set up a global alias for your operating system and terminal shell.
 
 ### Linux & macOS
 
@@ -79,7 +79,7 @@ On Windows, you can configure an alias depending on whether you use PowerShell o
 Open or create your PowerShell Profile:
 notepad $PROFILE
 
-Add the following function to map helper dynamically (replace with your absolute Windows path, e.g., C:\Users\User\CommandsCLI\.env):
+Add the following function to map helpme dynamically (replace with your absolute Windows path, e.g., C:\Users\User\CommandsCLI\.env):
 
 - Using Podman:
   function Get-TerminalHelper {
@@ -97,7 +97,7 @@ Save and close the file, then reload your profile:
 & $PROFILE
 
 #### 2. Command Prompt (CMD)
-Create a batch file named helper.bat and place it in a directory that is in your Windows system PATH (e.g., C:\Windows or a custom tools folder):
+Create a batch file named helpme.bat and place it in a directory that is in your Windows system PATH (e.g., C:\Windows or a custom tools folder):
 
 @echo off
 podman run --rm -it --env-file "C:\path\to\your\CommandsCLI\.env" commands-cli
