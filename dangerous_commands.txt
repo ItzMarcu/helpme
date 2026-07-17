@@ -1,0 +1,140 @@
+# Dangerous command patterns - one per line
+# Lines starting with # are comments
+# The check is case-insensitive and matches substrings
+
+# File system destruction
+rm -rf /
+rm -rf /*
+rm -rf /home
+rm -rf /root
+rm -rf /etc
+rm -rf /var
+rm -rf /usr
+rm -rf /boot
+rm -rf /lib
+rm -rf /bin
+rm -rf /sbin
+
+# Disk wiping / formatting
+dd if=/dev/zero of=/dev/sd
+dd if=/dev/urandom of=/dev/sd
+dd if=/dev/zero of=/dev/nvme
+mkfs.
+mkfs.ext
+mkfs.fat
+mkfs.ntfs
+mkfs.xfs
+mkfs.btrfs
+mke2fs
+fdisk /dev/sd
+parted /dev/sd
+cfdisk /dev/sd
+sgdisk /dev/sd
+wipefs
+
+# Fork bombs
+:(){ :|:& };:
+:(){ :|: & };:
+
+# Remote code execution
+wget -O- | sh
+wget -O- | bash
+curl -sL | sh
+curl -sL | bash
+curl | sh
+curl | bash
+wget | sh
+wget | bash
+wget -O-
+curl -sL
+curl -o-
+curl -O
+
+# Permission destruction
+chmod -R 777 /
+chmod -R 777 /home
+chmod -R 777 /root
+chmod -R 777 /etc
+chown -R root:root /
+chown -R nobody /
+
+# System shutdown/reboot (dangerous in containers/servers)
+shutdown -h now
+shutdown -r now
+poweroff
+reboot
+halt
+init 0
+init 6
+systemctl poweroff
+systemctl reboot
+
+# Process killing
+kill -9 -1
+killall -9
+pkill -9
+
+# Network attacks
+iptables -F
+iptables -X
+ufw disable
+firewall-cmd --disable
+
+# Mount/umount critical filesystems
+umount -f /
+umount -l /
+mount -o remount,ro /
+
+# Kernel/module manipulation
+rmmod
+insmod
+modprobe -r
+
+# Dangerous redirections
+> /dev/sda
+> /dev/sdb
+> /dev/nvme
+echo 1 > /proc/sys/kernel/panic
+echo 1 > /proc/sys/kernel/sysrq
+
+# Package manager destruction
+apt-get remove --purge -y
+apt purge -y
+yum remove -y
+dnf remove -y
+pacman -R
+rpm -e
+
+# Cryptocurrency miners / resource exhaustion
+cryptonight
+xmrig
+minergate
+
+# Dangerous find/exec
+find / -exec rm
+find / -delete
+find /home -delete
+
+# Tar/archives to critical locations
+tar -xf /dev/
+tar -cf /dev/
+
+# SSH key manipulation
+ssh-keygen -f /root/.ssh/id_rsa -N ""
+cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+
+# History destruction
+history -c
+rm ~/.bash_history
+rm ~/.zsh_history
+
+# Log destruction
+rm -rf /var/log/*
+> /var/log/syslog
+> /var/log/auth.log
+> /var/log/messages
+
+# SELinux/AppArmor disable
+setenforce 0
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+aa-disable /etc/apparmor.d/*
