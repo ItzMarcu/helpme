@@ -122,3 +122,9 @@ ss -tuln
 q: exit
 
 ---
+
+## Contributors
+
+A special thanks to everyone who helped improve this project:
+
+* [@gandzekas](https://github.com/gandzekas) - Implemented dangerous command detection.
