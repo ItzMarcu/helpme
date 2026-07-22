@@ -6,7 +6,7 @@ from pathlib import Path
 def load_dangerous_patterns() -> list[str]:
     """Load dangerous command patterns from dangerous_commands.txt"""
     patterns = []
-    danger_file = Path(__file__).parent / "dangerous_commands.txt"
+    danger_file = Path(__file__).parent / "assets/dangerous_commands.txt"
     if danger_file.exists():
         for line in danger_file.read_text().splitlines():
             line = line.strip()
