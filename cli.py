@@ -1,5 +1,6 @@
 from query import connect
 from subprocess import run
+from os import chdir
 from pathlib import Path
 
 
@@ -33,6 +34,12 @@ def check_command(command: str | None = None) -> bool:
 
 
 def main():
+    
+    try:
+        chdir("/workspace")
+    except FileNotFoundError:
+        pass
+    
     while True:
         try:
             user_question = input("q: ").strip()
@@ -43,6 +50,13 @@ def main():
             try:
                 response = connect(user_question)
                 if response:
+                    response = response.strip().strip("`").strip()
+                    
+                    lines = response.splitlines()
+                    if lines and lines[0].lower() in ["bash", "sh"]:
+                        lines = lines[1:]
+                    
+                    response = "\n".join(lines).strip()
                     print(response)
 
                 # Check for dangerous commands before asking

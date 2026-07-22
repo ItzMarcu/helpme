@@ -18,7 +18,7 @@ def connect(text: str = None):
         },
         {
             "role": "user",
-            "content": f"{text}, rispondi a questa domanda con soltanto il comando, non argomentare"
+            "content": f"{text}, rispondi a questa domanda con soltanto il comando, non argomentare e restituisci un output pulito"
         }
     ]
     
