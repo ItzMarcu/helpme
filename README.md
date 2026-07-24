@@ -57,9 +57,9 @@ nano ~/.zshrc
 
 Add the following line at the end (replace /absolute/path/to/your/... with your actual path):
 - Using Podman (Recommended):
-  alias helpme="podman run --rm -it --userns=keep-id --env-file /absolute/path/to/your/CommandsCLI/.env -v \"\$(pwd)\":/workspace:Z commands-cli"
+  alias helpme="podman run --rm -it --userns=keep-id --env-file /absolute/path/to/your/CommandsCLI/.env -v \\"\\$(pwd)\\"/workspace:Z commands-cli"
 - Using Docker:
-  alias helpme="docker run --rm -it -v \"\$(pwd)\":/workspace -w /workspace --env-file /absolute/path/to/your/CommandsCLI/.env commands-cli"
+  alias helpme="docker run --rm -it -v \\"\\$(pwd)\\"/workspace -w /workspace --env-file /absolute/path/to/your/CommandsCLI/.env commands-cli"
 
 #### 2. For Bash
 Open your ~/.bashrc file:
@@ -80,17 +80,17 @@ On Windows, you can map your current working directory using the ${PWD} variable
 Open or create your PowerShell Profile:
 notepad $PROFILE
 
-Add the following function to dynamically mount your current host directory (replace with your absolute Windows path, e.g., C:\Users\User\CommandsCLI\.env):
+Add the following function to dynamically mount your current host directory (replace with your absolute Windows path, e.g., C:\\Users\\User\\CommandsCLI\\.env):
 
 - Using Podman:
   function Get-TerminalHelper {
-      podman run --rm -it --env-file "C:\path\to\your\CommandsCLI\.env" -v "${PWD}:/workspace" commands-cli
+      podman run --rm -it --env-file "C:\\path\\to\\your\\CommandsCLI\\.env" -v "${PWD}:/workspace" commands-cli
   }
   Set-Alias -Name helpme -Value Get-TerminalHelper
 
 - Using Docker:
   function Get-TerminalHelper {
-      docker run --rm -it --env-file "C:\path\to\your\CommandsCLI\.env" -v "${PWD}:/workspace" -w /workspace commands-cli
+      docker run --rm -it --env-file "C:\\path\\to\\your\\CommandsCLI\\.env" -v "${PWD}:/workspace" -w /workspace commands-cli
   }
   Set-Alias -Name helpme -Value Get-TerminalHelper
 
@@ -98,10 +98,10 @@ Save and close the file, then reload your profile:
 & $PROFILE
 
 #### 2. Command Prompt (CMD)
-Create a batch file named helpme.bat and place it in a directory that is in your Windows system PATH (e.g., C:\Windows):
+Create a batch file named helpme.bat and place it in a directory that is in your Windows system PATH (e.g., C:\\Windows):
 
 @echo off
-podman run --rm -it --env-file "C:\path\to\your\CommandsCLI\.env" -v "%cd%:/workspace" commands-cli
+podman run --rm -it --env-file "C:\\path\\to\\your\\CommandsCLI\\.env" -v "%cd%:/workspace" commands-cli
 
 *(If using Docker, add -w /workspace and replace "podman" with "docker" in the command above).*
 
